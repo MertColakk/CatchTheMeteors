@@ -27,7 +27,7 @@ public class SpawnManager : MonoBehaviour
             else
                 objectPooler.SpawnFromPool("Meteor",new Vector3(Random.Range(-10f,10f),7,0),Quaternion.identity);
 
-            yield return new WaitForSeconds(1.2f);
+            yield return new WaitForSeconds(.8f);
         }
     }
 

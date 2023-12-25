@@ -3,37 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Unity.VisualScripting;
 
 public class ScoreManager : MonoBehaviour
 {
-    //Variables
-    [SerializeField] TMP_Text text;
-    [SerializeField]Image gameOverImage;
-    GameManager gameManager;
-    
-    int gameScore;
+    // Variables
+    [SerializeField] TMP_Text text,highScoreText;
+    public Image gameOverImage;
+    int gameScore,highScore;
 
+
+    // PlayerPrefs keys
+    const string HighScoreKey = "HighScore";
 
     void Start()
     {
-        GameObject gameManagerObj = GameObject.Find("GameManager");
-        if(gameManagerObj!=null){
-            gameScore = 0;
-            gameOverImage.gameObject.SetActive(false);
-            gameManager = gameManagerObj.GetComponent<GameManager>();
-        }
+        gameScore = 0;
         
+        highScore = PlayerPrefs.GetInt(HighScoreKey, 0);
+        UpdateHighScoreText();
+
+        gameOverImage.gameObject.SetActive(false);
     }
 
-    void Update(){
-        if(gameManager.gameOver==true){
-            gameOverImage.gameObject.SetActive(true);
+    public void addToScore(int amount)
+    {
+        gameScore += amount;
+        text.text = "Score: " + gameScore.ToString();
+
+        if (gameScore > highScore)
+        {
+            highScore = gameScore;
+            PlayerPrefs.SetInt(HighScoreKey, highScore);
+            UpdateHighScoreText();
         }
     }
 
-    public void addToScore(int amount){
-        gameScore += amount;
-        text.text = "Score: "+gameScore.ToString();
+    void UpdateHighScoreText()
+    {
+        highScoreText.text = "High Score: " + highScore.ToString();
     }
 }

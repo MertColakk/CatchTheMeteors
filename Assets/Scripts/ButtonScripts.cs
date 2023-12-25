@@ -11,4 +11,8 @@ public class ButtonScripts : MonoBehaviour
         SceneManager.LoadScene( SceneManager.GetActiveScene().name);
         Time.timeScale=1;
     }
+
+    public void returnMainMenu(){
+        SceneManager.LoadScene("MainMenu");
+    }
 }
