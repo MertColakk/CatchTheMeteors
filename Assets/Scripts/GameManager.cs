@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
         gameOver=false;
         StartCoroutine(waitStartGame());
         countdownText.text="2";
-
     }
 
     IEnumerator waitStartGame()

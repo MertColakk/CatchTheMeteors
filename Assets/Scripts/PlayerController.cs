@@ -19,9 +19,6 @@ public class PlayerController : MonoBehaviour
         }
             
     }
-
-
-
     void FixedUpdate(){
         if(transform.position.x<-10.1f)
             transform.position = new Vector3(-10f,transform.position.y,transform.position.z);

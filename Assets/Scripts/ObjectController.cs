@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class ObjectController : MonoBehaviour
@@ -23,6 +21,12 @@ public class ObjectController : MonoBehaviour
            
         gameObject.SetActive(true);
 
+    }
+    void FixedUpdate(){
+        if(transform.position.x<-10.1f)
+            transform.position = new Vector3(-10f,transform.position.y,transform.position.z);
+        else if(transform.position.x>10.1f)
+            transform.position = new Vector3(10f,transform.position.y,transform.position.z);
     }
 
     void Update(){
